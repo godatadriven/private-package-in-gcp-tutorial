@@ -30,7 +30,7 @@ jobs:
       - name: Authenticate with GCP
         uses: google-github-actions/auth@v0.5.0
         with:
-          credentials: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Create .pypirc file
         run: |
