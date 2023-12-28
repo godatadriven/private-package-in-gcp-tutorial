@@ -1,9 +1,13 @@
 # How to register and install your own private Python package in GCP Artifact Registry
 
-For more info, see the [official documentation](https://cloud.google.com/artifact-registry/docs/python/manage-packages).
+In the following tutorial, we will register and install a private Python package in GCP Artifact Registry. We will do this in two ways: manually and with CICD (Github Actions). In the end, you will be able to install your own private Python package in your Python projects, by adding it to your requirements as you're used to!
+
+For more info, see the [official documentation](https://cloud.google.com/artifact-registry/docs/python/manage-packages). See [this documentation page](https://cloud.google.com/artifact-registry/docs/python/authentication) for more info about authentication with GCP Artifact Registry. See [this blog post](https://xebia.com/blog/an-updated-guide-to-setuptools-and-pyproject-toml/) for more info on how to package your Python code.
+
+## Register and install package manually
 
 1. Create a repository in GCP Artifact Registry to store our package:
-   1. Navigate to https://console.cloud.google.com/artifacts
+   1. Navigate to [Artifact Registry](https://console.cloud.google.com/artifacts)
    2. Click **+ CREATE REPOSITORY**
    3. Give it an appropriate name
    4. Select **Format**: Python
@@ -84,8 +88,30 @@ python -m twine upload -r ${REPOSITORY} dist/*
 pip install your-own-private-package
 ```
 
-## Register package with CICD
+## Register package with CICD (Github Actions)
 
-1. Create a service account
-2. Follow the instructions [here](https://cloud.google.com/artifact-registry/docs/python/authentication#sa-key)
-3. WIP...
+1. Fork this Github repository, so you will be able to add secrets to it later on. You can also use your own repository, but you will need to update the CICD configuration accordingly.
+1. Navigate to **IAM & Admin** > **Service Accounts** in GCP
+2. Create a new service account with the "Artifact Registry Writer" role
+3. Add a key to the service account and download it as a JSON file. Never commit this file to your repository!
+4. Add the following secrets to your Github repository, under **Settings** > **Secrets and variables** > **Actions** > **Repository secrets**:
+   - `PROJECT_ID`: your GCP project ID
+   - `LOCATION`: the location of your Artifact Registry repository
+   - `REPOSITORY`: the name of your Artifact Registry repository
+   - `SA_KEY_BASE64`: the contents of the service account JSON file you downloaded in step 3, base64 encoded. You can use the following command to base64 encode the file: 
+
+```bash
+base64 -i <path-to-json-file>
+```
+6. There are two ways to trigger the provided workflow in `.github/workflows/register-package.yaml`:
+   1. Manually, by clicking **Run workflow** in the **Actions** tab of your Github repository
+   2. Automatically, by pushing a new tag to your repository. The tag name must start with `v` and be followed by a version number, e.g. `v1.0.0`. You can do this by running the following command:
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+7. Check the **Actions** tab in your Github repository to see the CICD pipeline in action. You can also check the Artifact Registry repository to see if your package was uploaded successfully.
+
+## Wrap up
+
+Congratulations! You have successfully registered and installed your own private Python package in GCP Artifact Registry. Provided you set up your pip index as outlined in the first section, you can now use this package in your Python projects, by adding it to your requirements as you're used to! 🎉
