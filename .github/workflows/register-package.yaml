@@ -49,7 +49,7 @@ jobs:
 
       - name: Register package
         run: |
-          twine upload -r ${{ secrets.REPOSITORY }} dist/*
+          twine upload -r ${{ secrets.REPOSITORY }} dist/* --verbose
         env:
           REPOSITORY: ${{ secrets.REPOSITORY }}
           LOCATION: ${{ secrets.LOCATION }}
