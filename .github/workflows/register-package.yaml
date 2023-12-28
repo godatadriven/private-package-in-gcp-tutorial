@@ -50,9 +50,3 @@ jobs:
       - name: Register package
         run: |
           twine upload -r ${{ secrets.REPOSITORY }} dist/* --verbose
-        env:
-          REPOSITORY: ${{ secrets.REPOSITORY }}
-          LOCATION: ${{ secrets.LOCATION }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          GCP_SA_KEY_BASE64: ${{ secrets.GCP_SA_KEY_BASE64 }}
-          GOOGLE_APPLICATION_CREDENTIALS: $GOOGLE_APPLICATION_CREDENTIALS
