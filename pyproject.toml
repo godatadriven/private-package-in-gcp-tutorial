@@ -7,11 +7,14 @@ name = "your-own-private-package"
 dependencies = []
 requires-python = ">=3.8"
 authors = [
-    {name = "Yke Rusticus", email = "yke.rusticus@xebia.com"},
+    {name = "Your Name", email = "your.name@email.com"},
 ]
 description = "An Example Project"
 readme = "README.md"
-version = "0.1.0"
+dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = []
+
+[tool.setuptools_scm]
+version_file = "src/your_own_private_package/_version.py"
