@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install build twine keyring keyrings.google-artifactregistry-auth
+          pip install build twine
 
       - name: Build Python package
         run: |
