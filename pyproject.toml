@@ -1,3 +1,6 @@
+# For more info about the pyproject.toml file, see:
+# https://xebia.com/blog/an-updated-guide-to-setuptools-and-pyproject-toml/
+
 [build-system]
 requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
