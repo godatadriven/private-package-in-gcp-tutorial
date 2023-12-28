@@ -221,4 +221,7 @@ pip-selfcheck.json
 # Credentials
 *.json
 
+# Package versions
+*_version.py
+
 # End of https://www.toptal.com/developers/gitignore/api/python,venv,macos
