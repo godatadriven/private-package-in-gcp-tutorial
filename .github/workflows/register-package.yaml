@@ -40,4 +40,4 @@ jobs:
 
       - name: Register package
         run: |
-          twine upload -r ${{ secrets.REPOSITORY }} dist/* --verbose
+          twine upload -r ${{ secrets.REPOSITORY }} dist/*
