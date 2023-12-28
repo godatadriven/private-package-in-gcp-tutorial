@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "your-own-private-package"
+dependencies = []
+requires-python = ">=3.8"
+authors = [
+    {name = "Yke Rusticus", email = "yke.rusticus@xebia.com"},
+]
+description = "An Example Project"
+readme = "README.md"
+version = "0.1.0"
+
+[project.optional-dependencies]
+dev = []
