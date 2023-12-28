@@ -36,7 +36,7 @@ jobs:
           [${{ secrets.REPOSITORY }}]
           repository: https://${{ secrets.LOCATION }}-python.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.REPOSITORY }}/
           username: _json_key_base64
-          password: ${{ secrets.GCP_SA_KEY_BASE64 }}" > ~/.pypirc
+          password: ${{ secrets.SA_KEY_BASE64 }}" > ~/.pypirc
 
       - name: Register package
         run: |
